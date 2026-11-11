@@ -1,424 +1,483 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ECOVYRA | A Cleaner Future</title>
-<meta name="description" content="ECOVYRA provides reliable waste collection and management services. Book a collection today.">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>ECOVYRA | A Cleaner Tomorrow</title>
+<meta name="description" content="Reliable waste collection and responsible waste management by ECOVYRA.">
 <style>
-:root {
-  --green:#176b45;
-  --dark:#102c21;
-  --light:#f3f7f2;
-  --lime:#c6e7a5;
-  --white:#fff;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:var(--dark);background:#fff;line-height:1.6}
-header{padding:18px 7%;display:flex;justify-content:space-between;align-items:center;background:white;position:sticky;top:0;z-index:5;border-bottom:1px solid #eee}
-.logo{font-size:25px;font-weight:900;letter-spacing:2px;color:var(--green)}
-nav a{margin-left:20px;text-decoration:none;color:var(--dark);font-size:14px}
-.hero{padding:90px 8%;background:linear-gradient(120deg,#102c21,#176b45);color:white}
-.hero h1{font-size:clamp(38px,7vw,68px);line-height:1.08;max-width:750px;margin:15px 0}
-.hero p{max-width:570px;color:#dce9df}
-.eyebrow{letter-spacing:3px;font-size:12px;color:var(--lime);font-weight:bold}
-.btn{display:inline-block;background:var(--lime);color:var(--dark);padding:14px 23px;border:0;border-radius:5px;text-decoration:none;font-weight:bold;cursor:pointer}
-.btn.dark{background:var(--green);color:white}
-section{padding:65px 8%}
-h2{font-size:32px;margin:0 0 12px}
-.muted{color:#64746a}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:28px}
-.card{padding:25px;background:var(--light);border-radius:12px}
-.card h3{margin-top:0}
-form{display:grid;gap:14px;max-width:650px}
-input,select,textarea{width:100%;padding:14px;border:1px solid #d4ded5;border-radius:6px;font:inherit;background:white}
-textarea{min-height:90px}
-label{font-size:14px;font-weight:bold}
-.check{display:flex;gap:10px;align-items:flex-start;font-size:13px}
-.check input{width:auto;margin-top:5px}
-#booking{background:var(--light)}
-#account,#admin{background:#fff}
-.panel{max-width:900px;margin:auto;padding:25px;border:1px solid #e1e9e1;border-radius:12px}
-.hidden{display:none!important}
-.message{padding:12px;border-radius:6px;background:#e5f5e8;margin:12px 0}
-.error{background:#ffe8e8;color:#8b2020}
-.request{border:1px solid #e1e9e1;padding:16px;border-radius:8px;margin:12px 0}
-.request img{max-width:180px;display:block;margin:10px 0;border-radius:8px}
-footer{padding:35px 8%;background:var(--dark);color:white}
+:root{--green:#176b48;--dark:#103e2d;--lime:#c8ef86;--ink:#18352b;--muted:#64766c;--bg:#f7f9f5}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+header{padding:20px 7%;display:flex;justify-content:space-between;align-items:center;background:#fff;gap:15px}
+.logo{font-size:25px;font-weight:800;letter-spacing:2px;color:var(--green)}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-size:14px}
+.hero{padding:85px 8%;background:linear-gradient(120deg,var(--dark),#19734c);color:#fff}
+.hero h1{font-size:clamp(38px,7vw,65px);line-height:1.1;max-width:700px;margin:15px 0}
+.hero p{max-width:560px;color:#e0eee5}
+.btn{display:inline-block;margin-top:22px;background:var(--lime);color:#173b29;padding:13px 22px;border-radius:5px;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
+section{padding:60px 8%}
+.section-title{font-size:32px;margin-bottom:12px}
+.intro{max-width:650px;color:var(--muted);margin-bottom:25px}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.service,.panel{background:white;padding:24px;border-radius:10px;border:1px solid #e5ebe5}
+.service h3{color:var(--green);margin-bottom:9px}
+.booking{background:#eaf2e9}
+form{max-width:680px;background:#fff;padding:25px;border-radius:10px}
+label{display:block;font-weight:bold;margin:14px 0 6px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #d4ded5;border-radius:5px;font-size:15px;background:#fff}
+textarea{min-height:95px}
+input[type=file]{padding:10px}
+form button{width:100%;font-size:16px}
+.small{font-size:13px;color:var(--muted);margin-top:6px}
+.contact{background:#123d2e;color:#fff;text-align:center}
+.contact a{color:var(--lime)}
+footer{text-align:center;padding:22px;background:#0c2b20;color:#dce9df;font-size:13px}
 footer a{color:var(--lime)}
-.small{font-size:13px;color:#6b786f}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-button:disabled{opacity:.5}
+.hidden{display:none!important}
+.notice{padding:13px;border-radius:6px;margin:15px 0;display:none}
+.notice.show{display:block}
+.notice.error{background:#ffe9e7;color:#8c241b}
+.notice.success{background:#e5f6e9;color:#176b35}
+.admin-area{min-height:75vh;background:#f1f5f0}
+.admin-wrap{max-width:1100px;margin:auto}
+.admin-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:20px 0}
+.stat{background:white;padding:18px;border:1px solid #e1e9e1;border-radius:9px}
+.stat strong{display:block;font-size:27px;color:var(--green)}
+.request{background:#fff;border:1px solid #e1e9e1;border-radius:9px;padding:18px;margin:12px 0}
+.request h3{color:var(--green);margin-bottom:8px}
+.request p{overflow-wrap:anywhere;margin:4px 0}
+.request select{max-width:220px;margin-top:10px}
+.request img{display:block;max-width:220px;max-height:220px;object-fit:cover;border-radius:7px;margin-top:10px}
+.admin-login{max-width:450px;margin:20px auto;background:#fff;padding:25px;border-radius:10px}
+.admin-login button,.admin-top button{padding:12px 18px;border:0;border-radius:5px;background:var(--green);color:white;font-weight:bold;cursor:pointer}
+.admin-top .secondary{background:#53675b}
 @media(max-width:600px){
- header{padding:15px 5%}
- nav a{margin-left:8px;font-size:12px}
- .hero{padding:65px 6%}
- section{padding:50px 6%}
+header{padding:17px 5%;align-items:flex-start;flex-direction:column}
+nav{gap:13px}
+.hero{padding:60px 7%}
+section{padding:48px 7%}
 }
 </style>
 </head>
 <body>
 
 <header>
- <div class="logo">ECOVYRA</div>
- <nav>
-  <a href="#services">Services</a>
-  <a href="#booking">Book</a>
-  <a href="#account">Account</a>
- </nav>
+  <div class="logo">ECOVYRA</div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#booking">Book Pickup</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
-<div class="hero">
- <div class="eyebrow">CLEANER COMMUNITIES. BETTER TOMORROWS.</div>
- <h1>A cleaner future starts with a better choice.</h1>
- <p>Reliable waste collection and responsible waste management, designed to make everyday living cleaner and easier.</p>
- <a class="btn" href="#booking">Schedule a collection →</a>
-</div>
-
-<section id="services">
- <div class="eyebrow" style="color:#176b45">WHAT WE DO</div>
- <h2>Waste management, made simple.</h2>
- <p class="muted">Practical collection services for homes, businesses and communities.</p>
- <div class="grid">
-  <div class="card"><h3>♻️ Household collection</h3><p>Convenient collection of everyday household waste.</p></div>
-  <div class="card"><h3>🏢 Business collection</h3><p>Waste collection support for shops and businesses.</p></div>
-  <div class="card"><h3>🌱 Cleaner communities</h3><p>Helping communities maintain cleaner surroundings.</p></div>
- </div>
-</section>
-
-<section id="booking">
- <div class="panel">
-  <div class="eyebrow" style="color:#176b45">BOOK A PICKUP</div>
-  <h2>Schedule a collection</h2>
-  <p class="muted">Tell us what you need collected. Our team will contact you to confirm arrangements.</p>
-
-  <div id="bookingMessage"></div>
-  <form id="bookingForm">
-   <label>Full name<input id="fullName" required maxlength="100"></label>
-   <label>Phone number<input id="phone" type="tel" required maxlength="30"></label>
-   <label>Email (optional)<input id="customerEmail" type="email"></label>
-   <label>Area / neighbourhood<input id="area" required maxlength="100"></label>
-   <label>Full pickup address<textarea id="address" required maxlength="500"></textarea></label>
-   <label>Type of waste
-    <select id="wasteType" required>
-     <option value="">Choose waste type</option>
-     <option>Household waste</option>
-     <option>Food and organic waste</option>
-     <option>Plastic and packaging</option>
-     <option>Business waste</option>
-     <option>Other</option>
-    </select>
-   </label>
-   <label>Estimated quantity (optional)<input id="quantity" placeholder="e.g. 2 bags"></label>
-   <label>Preferred collection day<input id="preferredDay" type="date"></label>
-   <label>Waste photo (optional)<input id="photo" type="file" accept="image/jpeg,image/png,image/webp"></label>
-   <div class="small">Maximum photo size: 5 MB. JPG, PNG and WebP only.</div>
-   <label>Additional information<textarea id="notes" maxlength="1000"></textarea></label>
-   <label class="check"><input type="checkbox" id="consent" required><span>I agree that ECOVYRA may contact me about this collection request.</span></label>
-   <button class="btn dark" id="submitButton" type="submit">Submit pickup request</button>
-  </form>
-  <p class="small">Submitting a request does not guarantee a confirmed collection. Our team will contact you.</p>
- </div>
-</section>
-
-<section id="account">
- <div class="panel">
-  <h2>Customer account</h2>
-  <p class="muted">Creating an account is optional. You can also book without registering.</p>
-  <div id="authMessage"></div>
-  <form id="signupForm">
-   <h3>Create an account</h3>
-   <label>Email<input id="signupEmail" type="email" required></label>
-   <label>Password<input id="signupPassword" type="password" minlength="8" required></label>
-   <button class="btn dark">Create account</button>
-  </form>
-  <hr style="margin:25px 0;border:0;border-top:1px solid #ddd">
-  <form id="loginForm">
-   <h3>Log in</h3>
-   <label>Email<input id="loginEmail" type="email" required></label>
-   <label>Password<input id="loginPassword" type="password" required></label>
-   <button class="btn dark">Log in</button>
-  </form>
-  <button class="btn hidden" id="logoutButton" style="margin-top:15px">Log out</button>
-  <div id="customerRequests"></div>
- </div>
-</section>
-
-<section id="admin" class="hidden">
- <div class="panel">
-  <div class="eyebrow" style="color:#176b45">OWNER AREA</div>
-  <h2>ECOVYRA Dashboard</h2>
-  <div id="adminMessage"></div>
-  <div class="grid">
-   <div class="card"><h3>Total requests</h3><strong id="total">0</strong></div>
-   <div class="card"><h3>Pending</h3><strong id="pending">0</strong></div>
-   <div class="card"><h3>Accepted</h3><strong id="accepted">0</strong></div>
-   <div class="card"><h3>Completed</h3><strong id="completed">0</strong></div>
+<main id="publicSite">
+  <div class="hero">
+    <p>SMART WASTE MANAGEMENT</p>
+    <h1>A Cleaner Environment. A Better Tomorrow.</h1>
+    <p>Reliable waste collection and responsible waste management for homes, businesses and communities.</p>
+    <a class="btn" href="#booking">Schedule a Collection →</a>
   </div>
-  <h3>Collection requests</h3>
-  <button class="btn dark" id="refreshButton" type="button">Refresh requests</button>
-  <div id="requestList"></div>
-</div>
+
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <p class="intro">We make waste collection simpler, cleaner and more convenient.</p>
+    <div class="services">
+      <div class="service">
+        <h3>Household Collection</h3>
+        <p>Convenient waste pickup for homes and residential properties.</p>
+      </div>
+      <div class="service">
+        <h3>Business Collection</h3>
+        <p>Waste collection solutions for shops, offices and businesses.</p>
+      </div>
+      <div class="service">
+        <h3>Community Cleaning</h3>
+        <p>Helping communities maintain cleaner and healthier surroundings.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking" id="booking">
+    <h2 class="section-title">Schedule a Collection</h2>
+    <p class="intro">Complete the form below. Our team will contact you to confirm availability and arrangements.</p>
+
+    <form id="bookingForm">
+      <label for="name">Full Name</label>
+      <input id="name" required maxlength="100" placeholder="Your full name">
+
+      <label for="phone">Phone Number</label>
+      <input id="phone" required type="tel" maxlength="30" placeholder="Your phone number">
+
+      <label for="area">Area / Neighbourhood</label>
+      <input id="area" required maxlength="150" placeholder="Your area">
+
+      <label for="address">Collection Address</label>
+      <input id="address" required maxlength="250" placeholder="Your full address">
+
+      <label for="waste">Type of Waste</label>
+      <select id="waste" required>
+        <option value="">Select waste type</option>
+        <option>Household waste</option>
+        <option>Commercial waste</option>
+        <option>Garden waste</option>
+        <option>Other</option>
+      </select>
+
+      <label for="day">Preferred Collection Day</label>
+      <input id="day" type="date" required>
+
+      <label for="photo">Waste Photo (optional)</label>
+      <input id="photo" type="file" accept="image/jpeg,image/png,image/webp">
+      <p class="small">Maximum photo size: 5 MB. JPG, PNG or WebP only.</p>
+
+      <label for="notes">Additional Information</label>
+      <textarea id="notes" maxlength="1000" placeholder="Any additional details?"></textarea>
+
+      <button class="btn" id="submitButton" type="submit">Send Collection Request →</button>
+      <div id="bookingNotice" class="notice" role="status"></div>
+    </form>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 class="section-title">Let's Keep Our Environment Clean.</h2>
+    <p>Contact ECOVYRA for collection enquiries and support.</p>
+    <p>Email: <a href="mailto:ecovyra@gmail.com">ecovyra@gmail.com</a></p>
+    <p>WhatsApp: <a href="https://wa.me/2349032804251">09032804251</a></p>
+    <p>Call: <a href="tel:+2349032804251">09032804251</a></p>
+    <a class="btn" href="https://wa.me/2349032804251">Chat With Us</a>
+  </section>
+</main>
+
+<section id="adminArea" class="admin-area hidden">
+  <div class="admin-wrap">
+    <div class="admin-top">
+      <div>
+        <h2 class="section-title">ECOVYRA Admin Dashboard</h2>
+        <p class="small">Manage customer collection requests.</p>
+      </div>
+      <div>
+        <button class="secondary" id="backButton">View Website</button>
+        <button id="logoutButton" class="hidden">Log Out</button>
+      </div>
+    </div>
+
+    <div id="loginPanel" class="admin-login">
+      <h2>Admin Login</h2>
+      <p class="small">Sign in with your existing ECOVYRA admin account.</p>
+      <form id="loginForm">
+        <label for="adminEmail">Email</label>
+        <input id="adminEmail" type="email" value="ecovyra@gmail.com" required>
+        <label for="adminPassword">Password</label>
+        <input id="adminPassword" type="password" required placeholder="Your admin password">
+        <button type="submit" style="width:100%;margin-top:18px">Sign In</button>
+        <div id="loginNotice" class="notice" role="status"></div>
+      </form>
+    </div>
+
+    <div id="dashboardPanel" class="hidden">
+      <div class="stats">
+        <div class="stat">Total requests<strong id="totalCount">0</strong></div>
+        <div class="stat">Pending<strong id="pendingCount">0</strong></div>
+        <div class="stat">Accepted<strong id="acceptedCount">0</strong></div>
+        <div class="stat">Completed<strong id="completedCount">0</strong></div>
+        <div class="stat">Rejected<strong id="rejectedCount">0</strong></div>
+      </div>
+      <div class="panel">
+        <div class="admin-top">
+          <h2>Customer Requests</h2>
+          <button id="refreshButton">Refresh Requests</button>
+        </div>
+        <div id="dashboardNotice" class="notice" role="status"></div>
+        <div id="requestsList">Loading requests...</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer>
- <div class="logo" style="color:#c6e7a5">ECOVYRA</div>
- <p>A cleaner future. A smarter way.</p>
- <p>Email: <a href="mailto:ecovyra@gmail.com">ecovyra@gmail.com</a></p>
- <p id="whatsappContact"></p>
- <p class="small" style="color:#cbd7ce">© 2026 ECOVYRA. All rights reserved.</p>
+  © 2026 ECOVYRA. A Cleaner Tomorrow Starts With Us.
+  <p><a href="#admin">Admin Login</a></p>
 </footer>
 
-<script>
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
 const SUPABASE_URL = "https://brrossqlwdudzyblvblk.supabase.co";
 const SUPABASE_KEY = "sb_publishable_omjhHRdAWOrMZug34yOgxw_M7tmlSqh";
 const ADMIN_EMAIL = "ecovyra@gmail.com";
-const WHATSAPP_NUMBER = "2349032804251";
+const PHOTO_BUCKET = "ecovyra-photos";
 
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
 const $ = id => document.getElementById(id);
-let currentUser = null;
 
-function showMessage(id, message, error=false) {
-  $(id).innerHTML = "";
-  const box = document.createElement("div");
-  box.className = error ? "message error" : "message";
-  box.textContent = message;
-  $(id).appendChild(box);
+function showNotice(id, message, type="success") {
+  const el = $(id);
+  el.textContent = message;
+  el.className = "notice show " + type;
 }
 
-function clearMessage(id) { $(id).innerHTML = ""; }
-
-function clean(value) { return String(value || "").trim(); }
-
-async function refreshSession() {
-  const {data} = await db.auth.getSession();
-  currentUser = data.session?.user || null;
-  $("logoutButton").classList.toggle("hidden", !currentUser);
-  $("admin").classList.toggle("hidden",
-    !currentUser || currentUser.email?.toLowerCase() !== ADMIN_EMAIL);
-  if (currentUser) {
-    await loadCustomerRequests();
-    if (currentUser.email?.toLowerCase() === ADMIN_EMAIL) {
-      await loadAdminRequests();
-    }
-  } else {
-    $("customerRequests").innerHTML = "";
-  }
+function clearNotice(id) {
+  const el = $(id);
+  el.textContent = "";
+  el.className = "notice";
 }
 
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[char]));
+}
+
+function showCorrectPage() {
+  const isAdmin = location.hash === "#admin";
+  $("publicSite").classList.toggle("hidden", isAdmin);
+  $("adminArea").classList.toggle("hidden", !isAdmin);
+  if (isAdmin) checkAdminSession();
+}
+
+window.addEventListener("hashchange", showCorrectPage);
+$("backButton").addEventListener("click", () => {
+  location.hash = "";
+  window.scrollTo(0,0);
+});
+
+const today = new Date();
+const localToday = new Date(today.getTime() - today.getTimezoneOffset()*60000)
+  .toISOString().split("T")[0];
+$("day").min = localToday;
+
+/* CUSTOMER BOOKING FORM */
 $("bookingForm").addEventListener("submit", async event => {
   event.preventDefault();
-  clearMessage("bookingMessage");
+  clearNotice("bookingNotice");
+
   const button = $("submitButton");
+  const photo = $("photo").files[0];
   button.disabled = true;
-  button.textContent = "Submitting...";
+  button.textContent = "Sending request...";
 
   try {
-    const file = $("photo").files[0];
-    if (file && file.size > 5 * 1024 * 1024) throw new Error("Photo must be 5 MB or smaller.");
-    if (file && !["image/jpeg","image/png","image/webp"].includes(file.type)) {
-      throw new Error("Please upload a JPG, PNG or WebP photo.");
-    }
-
     let photoPath = null;
-    if (file) {
-      const ext = file.type === "image/png" ? "png" :
-                  file.type === "image/webp" ? "webp" : "jpg";
-      const folder = currentUser ? currentUser.id : "guest";
-      photoPath = folder + "/" + crypto.randomUUID() + "." + ext;
-      const {error: uploadError} = await db.storage
-        .from("ecovyra-photos").upload(photoPath, file, {contentType:file.type});
+
+    if (photo) {
+      const allowedTypes = ["image/jpeg","image/png","image/webp"];
+      if (!allowedTypes.includes(photo.type)) {
+        throw new Error("Please upload a JPG, PNG or WebP image.");
+      }
+      if (photo.size > 5 * 1024 * 1024) {
+        throw new Error("Your photo is larger than 5 MB. Please choose a smaller image.");
+      }
+
+      const extension = photo.type === "image/jpeg" ? "jpg" :
+        photo.type === "image/png" ? "png" : "webp";
+      const fileName = crypto.randomUUID() + "." + extension;
+      const filePath = "customer-uploads/" + fileName;
+
+      const { error: uploadError } = await supabase.storage
+        .from(PHOTO_BUCKET)
+        .upload(filePath, photo, { contentType: photo.type, upsert: false });
+
       if (uploadError) throw uploadError;
+      photoPath = filePath;
     }
 
-    const record = {
-      full_name: clean($("fullName").value),
-      phone: clean($("phone").value),
-      email: clean($("customerEmail").value) || currentUser?.email || null,
-      area: clean($("area").value),
-      address: clean($("address").value),
-      waste_type: $("wasteType").value,
-      quantity: clean($("quantity").value) || null,
-      preferred_day: $("preferredDay").value || null,
-      notes: clean($("notes").value) || null,
-      photo_path: photoPath,
-      consent: $("consent").checked,
-      user_id: currentUser?.id || null
+    const request = {
+      full_name: $("name").value.trim(),
+      phone: $("phone").value.trim(),
+      area: $("area").value.trim(),
+      address: $("address").value.trim(),
+      waste_type: $("waste").value,
+      preferred_day: $("day").value,
+      notes: $("notes").value.trim(),
+      photo_path: photoPath
     };
 
-    const {error} = await db.from("pickup_requests").insert(record);
-    if (error) {
-      if (photoPath) await db.storage.from("ecovyra-photos").remove([photoPath]);
-      throw error;
-    }
+    const { error } = await supabase
+      .from("collection_requests")
+      .insert(request);
 
-    showMessage("bookingMessage", "Thank you! ECOVYRA has received your request. We will contact you to confirm collection arrangements.");
+    if (error) throw error;
+
     $("bookingForm").reset();
-    if (currentUser?.email?.toLowerCase() === ADMIN_EMAIL) await loadAdminRequests();
-    if (currentUser) await loadCustomerRequests();
+    $("day").min = localToday;
+    showNotice("bookingNotice",
+      "Thank you! ECOVYRA has received your collection request. This is not a confirmed booking. Our team will contact you to confirm arrangements."
+    );
   } catch (error) {
-    showMessage("bookingMessage", error.message || "Submission failed. Please try again.", true);
+    console.error(error);
+    showNotice("bookingNotice",
+      error.message || "We could not submit your request. Please try again or contact us on WhatsApp.",
+      "error"
+    );
   } finally {
     button.disabled = false;
-    button.textContent = "Submit pickup request";
+    button.textContent = "Send Collection Request →";
   }
 });
 
-$("signupForm").addEventListener("submit", async event => {
-  event.preventDefault();
-  const {data,error} = await db.auth.signUp({
-    email: clean($("signupEmail").value),
-    password: $("signupPassword").value
-  });
-  if (error) return showMessage("authMessage", error.message, true);
-  showMessage("authMessage", data.session
-    ? "Account created. You are now logged in."
-    : "Account created. Check your email to confirm your account.");
-  await refreshSession();
-});
+/* ADMIN LOGIN */
+async function checkAdminSession() {
+  const { data } = await supabase.auth.getSession();
+  const user = data.session?.user;
+
+  if (user && user.email?.toLowerCase() === ADMIN_EMAIL) {
+    $("loginPanel").classList.add("hidden");
+    $("dashboardPanel").classList.remove("hidden");
+    $("logoutButton").classList.remove("hidden");
+    await loadRequests();
+  } else {
+    $("dashboardPanel").classList.add("hidden");
+    $("logoutButton").classList.add("hidden");
+    $("loginPanel").classList.remove("hidden");
+  }
+}
 
 $("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
-  const {error} = await db.auth.signInWithPassword({
-    email: clean($("loginEmail").value),
-    password: $("loginPassword").value
-  });
-  if (error) return showMessage("authMessage", error.message, true);
-  showMessage("authMessage", "Login successful.");
-  await refreshSession();
+  clearNotice("loginNotice");
+
+  const email = $("adminEmail").value.trim().toLowerCase();
+  const password = $("adminPassword").value;
+
+  if (email !== ADMIN_EMAIL) {
+    showNotice("loginNotice","This email is not authorised as the ECOVYRA admin.","error");
+    return;
+  }
+
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    showNotice("loginNotice",error.message,"error");
+    return;
+  }
+
+  $("adminPassword").value = "";
+  await checkAdminSession();
 });
 
 $("logoutButton").addEventListener("click", async () => {
-  const {error} = await db.auth.signOut();
-  if (error) return showMessage("authMessage", error.message, true);
-  showMessage("authMessage", "You have logged out.");
-  await refreshSession();
+  await supabase.auth.signOut();
+  $("dashboardPanel").classList.add("hidden");
+  $("logoutButton").classList.add("hidden");
+  $("loginPanel").classList.remove("hidden");
+  showNotice("loginNotice","You have been logged out.");
 });
 
-function addText(parent, tag, value) {
-  const el = document.createElement(tag);
-  el.textContent = value ?? "";
-  parent.appendChild(el);
-  return el;
+/* ADMIN DASHBOARD */
+function updateCounts(rows) {
+  $("totalCount").textContent = rows.length;
+  $("pendingCount").textContent = rows.filter(r => r.status === "pending").length;
+  $("acceptedCount").textContent = rows.filter(r => r.status === "accepted").length;
+  $("completedCount").textContent = rows.filter(r => r.status === "completed").length;
+  $("rejectedCount").textContent = rows.filter(r => r.status === "rejected").length;
 }
 
-async function loadCustomerRequests() {
-  const {data,error} = await db.from("pickup_requests")
-    .select("id,status,created_at,waste_type,preferred_day")
-    .eq("user_id", currentUser.id)
-    .order("created_at", {ascending:false});
-  if (error) return;
-  const container = $("customerRequests");
-  container.innerHTML = "<h3>Your collection requests</h3>";
-  (data || []).forEach(item => {
-    const card = document.createElement("div");
-    card.className = "request";
-    addText(card,"strong",item.waste_type);
-    addText(card,"p","Status: " + item.status);
-    addText(card,"p","Preferred day: " + (item.preferred_day || "Not specified"));
-    container.appendChild(card);
-  });
-}
+async function loadRequests() {
+  $("requestsList").textContent = "Loading requests...";
+  clearNotice("dashboardNotice");
 
-async function loadAdminRequests() {
-  if (!currentUser || currentUser.email?.toLowerCase() !== ADMIN_EMAIL) return;
-  showMessage("adminMessage","Loading requests...");
-  const {data,error} = await db.from("pickup_requests")
-    .select("*").order("created_at",{ascending:false});
+  const { data, error } = await supabase
+    .from("collection_requests")
+    .select("*")
+    .order("created_at", { ascending: false });
+
   if (error) {
-    showMessage("adminMessage",error.message,true);
+    $("requestsList").textContent = "Could not load requests.";
+    showNotice("dashboardNotice",error.message,"error");
     return;
   }
-  clearMessage("adminMessage");
-  $("total").textContent = data.length;
-  $("pending").textContent = data.filter(x=>x.status==="Pending").length;
-  $("accepted").textContent = data.filter(x=>x.status==="Accepted").length;
-  $("completed").textContent = data.filter(x=>x.status==="Completed").length;
-  const list = $("requestList");
-  list.innerHTML = "";
 
-  for (const item of data) {
-    const card = document.createElement("div");
+  updateCounts(data || []);
+
+  if (!data || data.length === 0) {
+    $("requestsList").textContent = "No customer requests yet.";
+    return;
+  }
+
+  $("requestsList").innerHTML = "";
+
+  for (const request of data) {
+    const card = document.createElement("article");
     card.className = "request";
-    addText(card,"h3",item.full_name);
-    addText(card,"p","Phone: " + item.phone);
-    addText(card,"p","Email: " + (item.email || "Not supplied"));
-    addText(card,"p","Area: " + item.area);
-    addText(card,"p","Address: " + item.address);
-    addText(card,"p","Waste: " + item.waste_type);
-    addText(card,"p","Quantity: " + (item.quantity || "Not specified"));
-    addText(card,"p","Preferred day: " + (item.preferred_day || "Not specified"));
-    addText(card,"p","Notes: " + (item.notes || "None"));
-    addText(card,"p","Status: " + item.status);
-    addText(card,"p","Submitted: " + new Date(item.created_at).toLocaleString());
 
-    if (item.photo_path) {
-      const {data:imageData,error:imageError} = await db.storage
-        .from("ecovyra-photos").createSignedUrl(item.photo_path,3600);
-      if (!imageError && imageData?.signedUrl) {
-        const img = document.createElement("img");
-        img.src = imageData.signedUrl;
-        img.alt = "Customer waste photo";
-        card.appendChild(img);
+    const created = request.created_at
+      ? new Date(request.created_at).toLocaleString()
+      : "Not available";
+
+    let photoHTML = "";
+    if (request.photo_path) {
+      const { data: signed, error: photoError } = await supabase.storage
+        .from(PHOTO_BUCKET)
+        .createSignedUrl(request.photo_path, 3600);
+
+      if (!photoError && signed?.signedUrl) {
+        photoHTML = `<p><strong>Waste photo:</strong></p>
+          <a href="${escapeHTML(signed.signedUrl)}" target="_blank" rel="noopener">
+          <img src="${escapeHTML(signed.signedUrl)}" alt="Customer waste photo"></a>`;
+      } else {
+        photoHTML = "<p>Photo could not be displayed.</p>";
       }
     }
 
-    const select = document.createElement("select");
-    ["Pending","Accepted","Completed","Cancelled"].forEach(status=>{
-      const option = document.createElement("option");
-      option.value = status;
-      option.textContent = status;
-      option.selected = item.status === status;
-      select.appendChild(option);
-    });
-    select.addEventListener("change",async()=>{
-      select.disabled = true;
-      const {error:updateError} = await db.from("pickup_requests")
-        .update({status:select.value}).eq("id",item.id);
-      select.disabled = false;
+    card.innerHTML = `
+      <h3>${escapeHTML(request.full_name)}</h3>
+      <p><strong>Phone:</strong> ${escapeHTML(request.phone)}</p>
+      <p><strong>Area:</strong> ${escapeHTML(request.area)}</p>
+      <p><strong>Address:</strong> ${escapeHTML(request.address)}</p>
+      <p><strong>Waste type:</strong> ${escapeHTML(request.waste_type)}</p>
+      <p><strong>Preferred day:</strong> ${escapeHTML(request.preferred_day)}</p>
+      <p><strong>Additional information:</strong> ${escapeHTML(request.notes || "None")}</p>
+      <p><strong>Submitted:</strong> ${escapeHTML(created)}</p>
+      ${photoHTML}
+      <label for="status-${escapeHTML(request.id)}">Request status</label>
+      <select id="status-${escapeHTML(request.id)}">
+        <option value="pending" ${request.status==="pending"?"selected":""}>Pending</option>
+        <option value="accepted" ${request.status==="accepted"?"selected":""}>Accepted</option>
+        <option value="rejected" ${request.status==="rejected"?"selected":""}>Rejected</option>
+        <option value="completed" ${request.status==="completed"?"selected":""}>Completed</option>
+      </select>
+      <p class="small">Changing the selection saves the new status.</p>
+    `;
+
+    const statusSelect = card.querySelector("select");
+    statusSelect.addEventListener("change", async () => {
+      statusSelect.disabled = true;
+
+      const { error: updateError } = await supabase
+        .from("collection_requests")
+        .update({ status: statusSelect.value })
+        .eq("id", request.id);
+
+      statusSelect.disabled = false;
+
       if (updateError) {
-        showMessage("adminMessage",updateError.message,true);
+        showNotice("dashboardNotice",updateError.message,"error");
+        statusSelect.value = request.status;
       } else {
-        await loadAdminRequests();
+        showNotice("dashboardNotice","Request status updated successfully.");
+        await loadRequests();
       }
     });
-    card.appendChild(select);
 
-    const contact = document.createElement("a");
-    contact.className = "btn dark";
-    contact.style.marginLeft = "8px";
-    contact.style.display = "inline-block";
-    contact.style.marginTop = "12px";
-    contact.textContent = "Contact customer";
-    contact.href = "https://wa.me/" + WHATSAPP_NUMBER +
-      "?text=" + encodeURIComponent("Hello " + item.full_name + ", we are contacting you about your ECOVYRA waste collection request.");
-    contact.target = "_blank";
-    contact.rel = "noopener";
-    if (!WHATSAPP_NUMBER) contact.classList.add("hidden");
-    card.appendChild(contact);
-    list.appendChild(card);
+    $("requestsList").appendChild(card);
   }
-  if (!data.length) addText(list,"p","No collection requests yet.");
 }
 
-$("refreshButton").addEventListener("click",loadAdminRequests);
+$("refreshButton").addEventListener("click", loadRequests);
 
-if (WHATSAPP_NUMBER) {
-  const link = document.createElement("a");
-  link.href = "https://wa.me/" + WHATSAPP_NUMBER;
-  link.textContent = "Contact us on WhatsApp";
-  link.target = "_blank";
-  link.rel = "noopener";
-  $("whatsappContact").appendChild(link);
-}
-
-db.auth.onAuthStateChange(() => {
-  setTimeout(refreshSession,0);
+supabase.auth.onAuthStateChange(() => {
+  if (location.hash === "#admin") {
+    setTimeout(checkAdminSession, 0);
+  }
 });
-refreshSession();
+
+showCorrectPage();
 </script>
 </body>
 </html>
